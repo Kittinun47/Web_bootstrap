@@ -26,7 +26,7 @@
 
         body {
             background-color: var(--bg-dark);
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
             color: var(--text-primary);
             min-height: 100vh;
         }
@@ -168,7 +168,7 @@
     <div class="bg-glow glow-1"></div>
     <div class="bg-glow glow-2"></div>
 
-    <!-- Inject Header / Dynamic Sidebar -->
+    <!-- Dynamic Header/Sidebar -->
     <div id="menu-container"></div>
 
     <div class="main-container">
@@ -195,7 +195,7 @@
         <!-- Asymmetric Dashboard Grid -->
         <div class="row g-4">
             
-            <!-- Left Side: Cards Section (8 Columns wide on large screens) -->
+            <!-- Left Side: Card Grid (8 Columns wide) -->
             <div class="col-12 col-lg-7 col-xl-8">
                 <div class="row g-4">
                     
@@ -203,11 +203,11 @@
                     <div class="col-12 col-md-6">
                         <div class="media-card h-100">
                             <div class="media-img-wrapper">
-                                <img src="Img1/images2.jpg" alt="เสือโคร่งไซบีเรีย">
+                                <img src="Img1/bar.jpg" alt="บาเรตถาวร">
                             </div>
                             <div class="p-4">
-                                <span class="badge bg-indigo-subtle text-indigo mb-2 px-2.5 py-1.5 rounded-pill" style="background: rgba(99, 102, 241, 0.15); color: #818cf8;">สปีชีส์ที่ได้รับการอนุรักษ์</span>
-                                <h3 class="h5 fw-bold mb-0">เสือ</h3>
+                                <span class="badge mb-2 px-2.5 py-1.5 rounded-pill" style="background: rgba(99, 102, 241, 0.15); color: #818cf8;">ปืนหลัก</span>
+                                <h3 class="h5 fw-bold mb-0">บาเรตถาวร</h3>
                             </div>
                         </div>
                     </div>
@@ -216,11 +216,63 @@
                     <div class="col-12 col-md-6">
                         <div class="media-card h-100">
                             <div class="media-img-wrapper">
-                                <img src="Img1/images3.jpg" alt="เสือสาว">
+                                <img src="Img1/kriss.png" alt="kriss sv">
                             </div>
                             <div class="p-4">
-                                <span class="badge bg-pink-subtle text-pink mb-2 px-2.5 py-1.5 rounded-pill" style="background: rgba(236, 72, 153, 0.15); color: #f472b6;">หมวดหมู่สัตว์เลี้ยงลูกด้วยนม</span>
-                                <h3 class="h5 fw-bold mb-0">เสือ</h3>
+                                <span class="badge mb-2 px-2.5 py-1.5 rounded-pill" style="background: rgba(236, 72, 153, 0.15); color: #f472b6;">ปืนหลัก</span>
+                                <h3 class="h5 fw-bold mb-0">kriss sv</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="col-12 col-md-6">
+                        <div class="media-card h-100">
+                            <div class="media-img-wrapper">
+                                <img src="Img1/ball.png" alt="บอลน้ำ">
+                            </div>
+                            <div class="p-4">
+                                <span class="badge mb-2 px-2.5 py-1.5 rounded-pill" style="background: rgba(99, 102, 241, 0.15); color: #818cf8;">ระเบิด</span>
+                                <h3 class="h5 fw-bold mb-0">บอลน้ำ</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="col-12 col-md-6">
+                        <div class="media-card h-100">
+                            <div class="media-img-wrapper">
+                                <img src="Img1/dual.png" alt="พกคุ๋">
+                            </div>
+                            <div class="p-4">
+                                <span class="badge mb-2 px-2.5 py-1.5 rounded-pill" style="background: rgba(99, 102, 241, 0.15); color: #818cf8;">ปืนพก</span>
+                                <h3 class="h5 fw-bold mb-0">พกคุ๋</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div class="col-12 col-md-6">
+                        <div class="media-card h-100">
+                            <div class="media-img-wrapper">
+                                <img src="Img1/blue.png" alt="ฟ้า">
+                            </div>
+                            <div class="p-4">
+                                <span class="badge mb-2 px-2.5 py-1.5 rounded-pill" style="background: rgba(99, 102, 241, 0.15); color: #818cf8;">ตัวละคร</span>
+                                <h3 class="h5 fw-bold mb-0">ฟ้า</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 6 -->
+                    <div class="col-12 col-md-6">
+                        <div class="media-card h-100">
+                            <div class="media-img-wrapper">
+                                <img src="Img1/red.png" alt="แดง">
+                            </div>
+                            <div class="p-4">
+                                <span class="badge mb-2 px-2.5 py-1.5 rounded-pill" style="background: rgba(99, 102, 241, 0.15); color: #818cf8;">ตัวละคร</span>
+                                <h3 class="h5 fw-bold mb-0">แดง</h3>
                             </div>
                         </div>
                     </div>
@@ -228,9 +280,9 @@
                 </div>
             </div>
 
-            <!-- Right Side: Floating Input Form (4 Columns wide) -->
+            <!-- Right Side: Sticky Floating Input Form (4 Columns wide) -->
             <div class="col-12 col-lg-5 col-xl-4">
-                <div class="glass-card">
+                <div class="glass-card sticky-top" style="top: 2rem;">
                     <div class="mb-4">
                         <h2 class="h4 fw-bold mb-1">สร้างบัญชีผู้ใช้</h2>
                         <p class="text-secondary small mb-0">กรอกข้อมูลเพื่อลงทะเบียนสมาชิกใหม่</p>
@@ -285,7 +337,6 @@
 
     <!-- Bootstrap & Menu Loader Script -->
     <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/menu.js"></script>
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
@@ -306,6 +357,12 @@
                     }
                 })
                 .catch(error => console.error("Error loading menu:", error));
+
+            // Prevent default form page refresh
+            document.getElementById('registerForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                // Add submit logic / fetch call here
+            });
         });
     </script>
 </body>
