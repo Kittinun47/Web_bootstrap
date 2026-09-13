@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ข้อมูลไอเทม - Product Detail</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --surface-card: #1e293b;
+            --accent-primary: #6366f1;
+            --accent-glow: rgba(99, 102, 241, 0.35);
+            --text-primary: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --radius-lg: 24px;
+            --radius-md: 14px;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+
+        .bg-glow { position: fixed; width: 350px; height: 350px; border-radius: 50%; background: var(--accent-glow); filter: blur(120px); z-index: -1; pointer-events: none; }
+        .glow-1 { top: -50px; left: -50px; }
+        .glow-2 { bottom: -50px; right: -50px; background: rgba(236, 72, 153, 0.2); }
+
+        .main-container { max-width: 1280px; margin: 0 auto; padding: 2rem 1.5rem; }
+        
+        .glass-card {
+            background: var(--surface-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            height: 100%;
+        }
+
+        .img-showcase {
+            width: 100%;
+            height: 400px;
+            object-fit: contain;
+            border-radius: var(--radius-md);
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+        }
+
+        .stat-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+        
+        .stat-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 1s ease-in-out;
+        }
+
+        .btn-gradient-primary {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: var(--radius-md);
+            padding: 1rem 2rem;
+            font-weight: 600;
+            box-shadow: 0 4px 14px var(--accent-glow);
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+        .btn-gradient-primary:hover { opacity: 0.95; box-shadow: 0 6px 20px var(--accent-glow); color: #ffffff; }
+
+        .btn-glass-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 0.5rem 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        .btn-glass-secondary:hover { background: rgba(255, 255, 255, 0.1); color: var(--text-primary); }
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow glow-1"></div>
+    <div class="bg-glow glow-2"></div>
+    <div id="menu-container"></div>
+
+    <div class="main-container">
+        <!-- Top Navigation -->
+        <div class="mb-4 d-flex justify-content-between align-items-center">
+            <a href="index.html" class="btn-glass-secondary d-inline-flex align-items-center gap-2">
+                <i class="bi bi-arrow-left"></i> กลับหน้าหลัก
+            </a>
+        </div>
+
+        <div class="row g-4" id="product-content" style="display: none;">
+            <!-- Left Column: Weapon Image -->
+            <div class="col-12 col-lg-6">
+                <div class="glass-card d-flex align-items-center justify-content-center">
+                    <img id="product-img" src="" alt="Weapon Image" class="img-showcase" onerror="this.src='https://via.placeholder.com/400x300/1e293b/6366f1?text=Image+Not+Found'">
+                </div>
+            </div>
+
+            <!-- Right Column: Weapon Information -->
+            <div class="col-12 col-lg-6">
+                <div class="glass-card d-flex flex-column">
+                    <div class="mb-4">
+                        <span id="product-badge" class="badge mb-3 px-3 py-2 rounded-pill" style="font-size: 14px;">ประเภท</span>
+                        <h1 id="product-title" class="h2 fw-bold text-light mb-2">ชื่ออาวุธ</h1>
+                        <p id="product-desc" style="color: var(--text-muted);">รายละเอียด</p>
+                    </div>
+
+                    <!-- Weapon Stats -->
+                    <div class="mb-5 flex-grow-1">
+                        <h3 class="h5 fw-bold mb-4 text-white">ข้อมูลอาวุธ (Stats)</h3>
+                        
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between small text-light">
+                                <span>พลังโจมตี (Damage)</span>
+                                <span id="stat-damage-text" class="fw-bold">0</span>
+                            </div>
+                            <div class="stat-bar"><div id="stat-damage-bar" class="stat-fill" style="width: 0%; background: #ef4444;"></div></div>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between small text-light">
+                                <span>ความแม่นยำ (Accuracy)</span>
+                                <span id="stat-accuracy-text" class="fw-bold">0</span>
+                            </div>
+                            <div class="stat-bar"><div id="stat-accuracy-bar" class="stat-fill" style="width: 0%; background: #3b82f6;"></div></div>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between small text-light">
+                                <span>อัตราการยิง (Fire Rate)</span>
+                                <span id="stat-firerate-text" class="fw-bold">0</span>
+                            </div>
+                            <div class="stat-bar"><div id="stat-firerate-bar" class="stat-fill" style="width: 0%; background: #f59e0b;"></div></div>
+                        </div>
+                    </div>
+
+                    <!-- Action Button -->
+                    <div class="d-grid mt-auto">
+                        <button class="btn-gradient-primary text-center fs-5" onclick="alert('เพิ่มลงตะกร้าแล้ว!')">
+                            <i class="bi bi-cart-fill me-2"></i> สวมใส่ / ซื้อไอเทม
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Error message if product is not found -->
+        <div id="error-message" class="text-center py-5" style="display: none;">
+            <h2 class="text-white">ไม่พบข้อมูลไอเทม</h2>
+            <p class="text-muted">กรุณากลับไปเลือกไอเทมใหม่จากหน้าหลัก</p>
+            <a href="index.html" class="btn-gradient-primary mt-3">กลับหน้าหลัก</a>
+        </div>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 1. Fetch the Menu
+        document.addEventListener("DOMContentLoaded", () => {
+            fetch("menu.html")
+                .then(response => response.ok ? response.text() : "")
+                .then(data => document.getElementById("menu-container").innerHTML = data);
+
+            // 2. Product Database (Add new weapons here!)
+            const products = {
+                'barrett': {
+                    name: 'บาเรตถาวร (Barrett M82A1)',
+                    type: 'ปืนหลัก (Sniper)',
+                    badgeBg: 'rgba(99, 102, 241, 0.15)',
+                    badgeColor: '#818cf8',
+                    desc: 'ปืนไรเฟิลซุ่มยิงต่อต้านยุทโธปกรณ์ที่มีพลังทำลายล้างสูงที่สุดในเกม สามารถเจาะทะลุกำแพงและทำความเสียหายได้อย่างมหาศาล เหมาะสำหรับการยิงระยะไกล',
+                    img: 'Img1/bar.jpg',
+                    damage: 100,
+                    accuracy: 75,
+                    fireRate: 15
+                },
+                'm4a1': {
+                    name: 'kriss sv ถาวร',
+                    type: 'ปืนกลจู่โจม (Assault)',
+                    badgeBg: 'rgba(16, 185, 129, 0.15)',
+                    badgeColor: '#34d399',
+                    desc: 'ปืนไรเฟิลจู่โจมมาตรฐานที่มีความสมดุลสูง ยิงได้นิ่งและแม่นยำมาก เหมาะสำหรับการต่อสู้ในทุกระยะ',
+                    img: 'Img1/kriss.jpg',
+                    damage: 45,
+                    accuracy: 85,
+                    fireRate: 78
+                },
+                'ak47': {
+                    name: 'AK-47 ถาวร',
+                    type: 'ปืนกลจู่โจม (Assault)',
+                    badgeBg: 'rgba(16, 185, 129, 0.15)',
+                    badgeColor: '#34d399',
+                    desc: 'ปืนไรเฟิลจู่โจมที่มีชื่อเสียงเรื่องพลังทำลายล้างที่รุนแรง แม้จะมีแรงดีดที่สูงแต่ถ้าคุมได้จะเป็นอาวุธที่อันตรายมาก',
+                    img: 'Img1/ak47.jpg',
+                    damage: 60,
+                    accuracy: 55,
+                    fireRate: 68
+                },
+                'deagle': {
+                    name: 'Desert Eagle',
+                    type: 'ปืนพก (Pistol)',
+                    badgeBg: 'rgba(245, 158, 11, 0.15)',
+                    badgeColor: '#fbbf24',
+                    desc: 'ปืนพกกึ่งอัตโนมัติที่มีพลังทำลายล้างสูงที่สุด สามารถสังหารศัตรูได้ในการยิงเข้าที่ศีรษะเพียงนัดเดียว',
+                    img: 'Img1/deagle.jpg',
+                    damage: 75,
+                    accuracy: 65,
+                    fireRate: 35
+                }
+            };
+
+            // 3. Get the ID from the URL (e.g. ?id=m4a1)
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+
+            // 4. Update the page with the product data
+            if (productId && products[productId]) {
+                const item = products[productId];
+                
+                // Show content
+                document.getElementById('product-content').style.display = 'flex';
+                
+                // Update text & images
+                document.getElementById('product-title').textContent = item.name;
+                document.getElementById('product-desc').textContent = item.desc;
+                document.getElementById('product-img').src = item.img;
+                
+                // Update badge
+                const badge = document.getElementById('product-badge');
+                badge.textContent = item.type;
+                badge.style.background = item.badgeBg;
+                badge.style.color = item.badgeColor;
+
+                // Update Stats (with a slight delay so the animation plays)
+                setTimeout(() => {
+                    document.getElementById('stat-damage-text').textContent = item.damage;
+                    document.getElementById('stat-damage-bar').style.width = item.damage + '%';
+                    
+                    document.getElementById('stat-accuracy-text').textContent = item.accuracy;
+                    document.getElementById('stat-accuracy-bar').style.width = item.accuracy + '%';
+                    
+                    document.getElementById('stat-firerate-text').textContent = item.fireRate;
+                    document.getElementById('stat-firerate-bar').style.width = item.fireRate + '%';
+                }, 100);
+
+            } else {
+                // If ID is missing or wrong, show error
+                document.getElementById('error-message').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

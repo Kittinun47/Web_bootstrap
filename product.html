@@ -56,15 +56,6 @@
             flex-grow: 1;
         }
 
-        /* Top Bar Profile Component */
-        .top-nav-card {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(16px);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            padding: 1.25rem 2rem;
-        }
-
         /* Feature Media Cards */
         .media-card {
             background: var(--surface-card);
@@ -102,14 +93,6 @@
             transform: scale(1.08);
         }
 
-        /* Glass Card Styling */
-        .glass-card {
-            background: var(--surface-card);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            padding: 2.25rem;
-        }
-
         /* Custom Buttons */
         .btn-gradient-primary {
             background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
@@ -135,8 +118,9 @@
             color: var(--text-muted);
             border: 1px solid var(--border-color);
             border-radius: var(--radius-md);
-            padding: 0.85rem 1.5rem;
+            padding: 0.5rem 1rem;
             font-weight: 600;
+            font-size: 0.875rem;
             transition: all 0.2s ease;
         }
 
@@ -162,44 +146,24 @@
     <div class="bg-glow glow-1"></div>
     <div class="bg-glow glow-2"></div>
 
-    <!-- Dynamic Menu Component Container -->
-    <div id="menu-container"></div>
-
     <main class="main-container">
-        
-        <!-- ================= Top Profile & Header Section ================= -->
-        <header class="top-nav-card mb-4 d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
-            <div class="d-flex align-items-center gap-3">
-                <div class="avatar-ring p-1 rounded-circle" style="background: linear-gradient(135deg, #6366f1, #ec4899);">
-                    <div class="bg-dark rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">
-                        <i class="bi bi-person-fill text-light fs-4"></i>
-                    </div>
-                </div>
-                <div>
-                    <h1 class="h4 mb-0 fw-bold">Kittinun Sukha</h1>
-                    <span class="text-secondary small"><i class="bi bi-circle-fill text-success fs-6 me-1"></i> ระบบจัดการคลังไอเทม (Inventory Portal)</span>
-                </div>
-            </div>
-
-            <a class="btn btn-glass-secondary d-flex align-items-center gap-2 text-decoration-none" href="https://www.google.com" target="_blank" rel="noopener noreferrer">
-                <i class="bi bi-search"></i> ค้นหาข้อมูลเพิ่มเติม
-            </a>
-        </header>
-
-        <!-- ================= Main Content Layout (Grid + Action Panel) ================= -->
-        <div class="row g-4">
-            
-            <!-- Left Side: Product Showcase Grid (7 Columns) -->
-            <div class="col-12 col-lg-7 col-xl-8">
-                <div class="mb-3">
-                    <h2 class="h5 fw-bold text-light"><i class="bi bi-grid-fill me-2 text-indigo"></i> รายการไอเทมทั้งหมด</h2>
+        <div class="row">
+            <!-- Full Width Product Showcase Grid -->
+            <div class="col-12">
+                
+                <!-- Back Button & Header Title Section -->
+                <div class="mb-4">
+                    <button type="button" onclick="history.back()" class="btn btn-glass-secondary d-inline-flex align-items-center gap-2 mb-3">
+                        <i class="bi bi-arrow-left"></i> ย้อนกลับ
+                    </button>
+                    <h2 class="h4 fw-bold text-light"><i class="bi bi-grid-fill me-2 text-indigo"></i> รายการไอเทมทั้งหมด</h2>
                     <p class="text-secondary small">คลิกที่การ์ดเพื่อดูรายละเอียด หรือกดปุ่มซื้อสินค้าเพื่อทำรายการ</p>
                 </div>
 
                 <div class="row g-4">
                     
                     <!-- Product Card 1: Barrett -->
-                    <div class="col-12 col-md-6">
+                    <div class="col-12 col-sm-6 col-lg-4">
                         <div class="media-card h-100 d-flex flex-column">
                             <a href="product_detail.html?id=barrett" class="text-decoration-none flex-grow-1">
                                 <div class="media-img-wrapper">
@@ -223,7 +187,7 @@
                     </div>
 
                     <!-- Product Card 2: Kriss SV -->
-                    <div class="col-12 col-md-6">
+                    <div class="col-12 col-sm-6 col-lg-4">
                         <div class="media-card h-100 d-flex flex-column">
                             <a href="product_detail.html?id=kriss" class="text-decoration-none flex-grow-1">
                                 <div class="media-img-wrapper">
@@ -247,7 +211,7 @@
                     </div>
 
                     <!-- Product Card 3: Water Bomb -->
-                    <div class="col-12 col-md-6">
+                    <div class="col-12 col-sm-6 col-lg-4">
                         <div class="media-card h-100 d-flex flex-column">
                             <a href="product_detail.html?id=ball" class="text-decoration-none flex-grow-1">
                                 <div class="media-img-wrapper">
@@ -271,7 +235,7 @@
                     </div>
 
                     <!-- Product Card 4: Dual Pistols -->
-                    <div class="col-12 col-md-6">
+                    <div class="col-12 col-sm-6 col-lg-4">
                         <div class="media-card h-100 d-flex flex-column">
                             <a href="product_detail.html?id=dual" class="text-decoration-none flex-grow-1">
                                 <div class="media-img-wrapper">
@@ -295,7 +259,7 @@
                     </div>
 
                     <!-- Product Card 5: Blue Character -->
-                    <div class="col-12 col-md-6">
+                    <div class="col-12 col-sm-6 col-lg-4">
                         <div class="media-card h-100 d-flex flex-column">
                             <a href="product_detail.html?id=blue" class="text-decoration-none flex-grow-1">
                                 <div class="media-img-wrapper">
@@ -319,7 +283,7 @@
                     </div>
 
                     <!-- Product Card 6: Red Character -->
-                    <div class="col-12 col-md-6">
+                    <div class="col-12 col-sm-6 col-lg-4">
                         <div class="media-card h-100 d-flex flex-column">
                             <a href="product_detail.html?id=red" class="text-decoration-none flex-grow-1">
                                 <div class="media-img-wrapper">
@@ -344,59 +308,22 @@
 
                 </div>
             </div>
-
-            <!-- Right Side: Account Actions Card (5 Columns) -->
-            <div class="col-12 col-lg-5 col-xl-4">
-                <div class="glass-card sticky-top text-center" style="top: 2rem;">
-                    <div class="mb-4">
-                        <div class="bg-dark rounded-circle p-3 d-inline-flex align-items-center justify-content-center mb-3" style="width: 64px; height: 64px; border: 1px solid var(--border-color);">
-                            <i class="bi bi-shield-lock-fill text-indigo fs-3" style="color: var(--accent-primary);"></i>
-                        </div>
-                        <h2 class="h4 fw-bold mb-1">ยินดีต้อนรับสู่ระบบ</h2>
-                        <p class="text-secondary small mb-0">กรุณาเข้าสู่ระบบหรือลงทะเบียนเพื่อจัดการบัญชีของคุณ</p>
-                    </div>
-
-                    <div class="d-grid gap-3">
-                        <a href="register.html" class="btn btn-gradient-primary py-3 d-flex align-items-center justify-content-center gap-2 text-decoration-none">
-                            <i class="bi bi-box-arrow-in-right fs-5"></i> เข้าสู่ระบบ (Login)
-                        </a>
-                        <a href="register.html" class="btn btn-glass-secondary py-3 d-flex align-items-center justify-content-center gap-2 text-decoration-none">
-                            <i class="bi bi-person-plus fs-5"></i> สมัครสมาชิก (Register)
-                        </a>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </main>
 
-    <!-- Academic Project Footer -->
+    <!-- Footer -->
     <footer class="project-footer">
         <div class="container">
-            <p class="mb-0">Web Programming Project &copy; 2026 | Designed with Bootstrap 5 &amp; Glassmorphism</p>
+            <p class="mb-0">Web Programming Project &copy; 2026 | Designed with Bootstrap 5</p>
         </div>
     </footer>
 
-    <!-- Bootstrap & Menu Loader Script -->
+    <!-- Bootstrap Bundle JS -->
     <script src="js/bootstrap.bundle.min.js"></script>
     <script>
-        // Buy Item Interactive Function
         function handleBuyItem(itemName, price) {
             alert(`🛒 สั่งซื้อสำเร็จ!\nรายการ: ${itemName}\nราคา: ฿${price.toLocaleString()} บาท`);
         }
-
-        document.addEventListener("DOMContentLoaded", () => {
-            // Fetch external menu component safely
-            fetch("menu.html")
-                .then(response => {
-                    if (!response.ok) throw new Error("Network error loading menu");
-                    return response.text();
-                })
-                .then(data => {
-                    document.getElementById("menu-container").innerHTML = data;
-                })
-                .catch(error => console.error("Error loading menu:", error));
-        });
     </script>
 </body>
 </html>
