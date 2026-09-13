@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Portal</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --surface-card: #1e293b;
+            --accent-primary: #6366f1;
+            --accent-glow: rgba(99, 102, 241, 0.35);
+            --text-primary: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --radius-lg: 24px;
+            --radius-md: 14px;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+
+        /* Glassmorphism Background Accent Blur */
+        .bg-glow {
+            position: fixed;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            background: var(--accent-glow);
+            filter: blur(120px);
+            z-index: -1;
+            pointer-events: none;
+        }
+        .glow-1 { top: -50px; left: -50px; }
+        .glow-2 { bottom: -50px; right: -50px; background: rgba(236, 72, 153, 0.2); }
+
+        /* General Layout Wrappers */
+        .main-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* Top Bar Profile Component */
+        .top-nav-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 1.25rem 2rem;
+        }
+
+        /* Feature Media Cards */
+        .media-card {
+            background: var(--surface-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .media-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+            border-color: rgba(255, 255, 255, 0.18);
+        }
+
+        .media-img-wrapper {
+            position: relative;
+            height: 240px;
+            overflow: hidden;
+        }
+
+        .media-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .media-card:hover .media-img-wrapper img {
+            transform: scale(1.08);
+        }
+
+        /* Modern Floating Input Fields */
+        .glass-card {
+            background: var(--surface-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 2.25rem;
+        }
+
+        .form-floating > .form-control,
+        .form-floating > .form-select {
+            background-color: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            border-radius: var(--radius-md);
+        }
+
+        .form-floating > .form-control:focus,
+        .form-floating > .form-select:focus {
+            background-color: rgba(15, 23, 42, 0.9);
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 4px var(--accent-glow);
+            color: var(--text-primary);
+        }
+
+        .form-floating > label {
+            color: var(--text-muted);
+        }
+
+        .form-floating > .form-control:focus ~ label,
+        .form-floating > .form-control:not(:placeholder-shown) ~ label,
+        .form-floating > .form-select ~ label {
+            color: var(--accent-primary);
+        }
+
+        /* Custom Buttons */
+        .btn-gradient-primary {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: var(--radius-md);
+            padding: 0.85rem 1.5rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            box-shadow: 0 4px 14px var(--accent-glow);
+            transition: all 0.2s ease;
+        }
+
+        .btn-gradient-primary:hover {
+            opacity: 0.95;
+            box-shadow: 0 6px 20px var(--accent-glow);
+            color: #ffffff;
+        }
+
+        .btn-glass-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 0.85rem 1.5rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .btn-glass-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ambient Background Lighting -->
+    <div class="bg-glow glow-1"></div>
+    <div class="bg-glow glow-2"></div>
+
+    <!-- Inject Header / Dynamic Sidebar -->
+    <div id="menu-container"></div>
+
+    <div class="main-container">
+        
+        <!-- Top Profile & Header -->
+        <header class="top-nav-card mb-4 d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+            <div class="d-flex align-items-center gap-3">
+                <div class="avatar-ring p-1 bg-gradient rounded-circle" style="background: linear-gradient(135deg, #6366f1, #ec4899);">
+                    <div class="bg-dark rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">
+                        <i class="bi bi-person-fill text-light fs-4"></i>
+                    </div>
+                </div>
+                <div>
+                    <h1 class="h4 mb-0 fw-bold">Patipan Phodee</h1>
+                    <span class="text-secondary small"><i class="bi bi-circle-fill text-success fs-6 me-1"></i> หน้าหลัก</span>
+                </div>
+            </div>
+
+            <a class="btn btn-glass-secondary d-flex align-items-center gap-2" href="https://www.google.com" target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-search"></i> Google Search
+            </a>
+        </header>
+
+        <!-- Asymmetric Dashboard Grid -->
+        <div class="row g-4">
+            
+            <!-- Left Side: Cards Section (8 Columns wide on large screens) -->
+            <div class="col-12 col-lg-7 col-xl-8">
+                <div class="row g-4">
+                    
+                    <!-- Card 1 -->
+                    <div class="col-12 col-md-6">
+                        <div class="media-card h-100">
+                            <div class="media-img-wrapper">
+                                <img src="Img1/images2.jpg" alt="เสือโคร่งไซบีเรีย">
+                            </div>
+                            <div class="p-4">
+                                <span class="badge bg-indigo-subtle text-indigo mb-2 px-2.5 py-1.5 rounded-pill" style="background: rgba(99, 102, 241, 0.15); color: #818cf8;">สปีชีส์ที่ได้รับการอนุรักษ์</span>
+                                <h3 class="h5 fw-bold mb-0">เสือโคร่งไซบีเรีย</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="col-12 col-md-6">
+                        <div class="media-card h-100">
+                            <div class="media-img-wrapper">
+                                <img src="Img1/images3.jpg" alt="เสือสาว">
+                            </div>
+                            <div class="p-4">
+                                <span class="badge bg-pink-subtle text-pink mb-2 px-2.5 py-1.5 rounded-pill" style="background: rgba(236, 72, 153, 0.15); color: #f472b6;">หมวดหมู่สัตว์เลี้ยงลูกด้วยนม</span>
+                                <h3 class="h5 fw-bold mb-0">เสือสาว</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Right Side: Floating Input Form (4 Columns wide) -->
+            <div class="col-12 col-lg-5 col-xl-4">
+                <div class="glass-card">
+                    <div class="mb-4">
+                        <h2 class="h4 fw-bold mb-1">สร้างบัญชีผู้ใช้</h2>
+                        <p class="text-secondary small mb-0">กรอกข้อมูลเพื่อลงทะเบียนสมาชิกใหม่</p>
+                    </div>
+
+                    <form id="registerForm">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="firstname" placeholder="Firstname" required>
+                            <label for="firstname">ชื่อ (Firstname)</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="lastname" placeholder="Lastname" required>
+                            <label for="lastname">นามสกุล (Lastname)</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="tel" class="form-control" id="phone" placeholder="Telephone" required>
+                            <label for="phone">เบอร์โทรศัพท์</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <select class="form-select" id="province" required>
+                                <option value="" selected disabled>เลือกจังหวัด...</option>
+                                <option value="1">สระแก้ว</option>
+                                <option value="2">ชลบุรี</option>
+                                <option value="3">ระยอง</option>
+                            </select>
+                            <label for="province">จังหวัด</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+                            <label for="email">อีเมล (Email)</label>
+                        </div>
+
+                        <div class="form-floating mb-4">
+                            <input type="password" class="form-control" id="password" placeholder="Password" required>
+                            <label for="password">รหัสผ่าน (Password)</label>
+                        </div>
+
+                        <div class="d-flex gap-2">
+                            <button type="reset" class="btn btn-glass-secondary flex-grow-1">ยกเลิก</button>
+                            <button type="submit" class="btn btn-gradient-primary flex-grow-1">ลงทะเบียน</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Bootstrap & Menu Loader Script -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/menu.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            fetch("menu.html")
+                .then(response => {
+                    if (!response.ok) throw new Error("Network error");
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById("menu-container").innerHTML = data;
+
+                    const sidebarToggle = document.querySelector('#sidebarToggle');
+                    if (sidebarToggle) {
+                        sidebarToggle.addEventListener('click', event => {
+                            event.preventDefault();
+                            document.body.classList.toggle('sb-sidenav-toggled');
+                        });
+                    }
+                })
+                .catch(error => console.error("Error loading menu:", error));
+        });
+    </script>
+</body>
+</html>
