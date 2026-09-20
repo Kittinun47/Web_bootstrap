@@ -1,0 +1,62 @@
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
+    <div class="container py-2">
+        <!-- Brand Logo -->
+        <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="index.html" style="color: #f8fafc; letter-spacing: 0.5px;">
+            <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 34px; height: 34px; background: linear-gradient(135deg, #6366f1, #ec4899);">
+                <i class="bi bi-shield-shaded text-light fs-6"></i>
+            </div>
+            JS Service
+        </a>
+
+        <!-- Mobile Toggle Button -->
+        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar Links & Search -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-3 gap-lg-1">
+                <li class="nav-item">
+                    <a class="nav-link active px-3 rounded-pill text-light" aria-current="page" href="index.html" style="background: rgba(99, 102, 241, 0.15); color: #818cf8 !important;">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-3 text-secondary" href="about.html">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-3 text-secondary" href="product.html">Product</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle px-3 text-secondary" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <ul class="dropdown-menu border-0 shadow-lg" style="background: #1e293b; border: 1px solid rgba(255, 255, 255, 0.08) !important; border-radius: 12px; padding: 0.5rem;">
+                        <li><a class="dropdown-item text-light rounded py-2 px-3" href="#" style="transition: background 0.2s;">Action</a></li>
+                        <li><a class="dropdown-item text-light rounded py-2 px-3" href="#" style="transition: background 0.2s;">Another action</a></li>
+                        <li><hr class="dropdown-divider opacity-25"></li>
+                        <li><a class="dropdown-item text-light rounded py-2 px-3" href="#" style="transition: background 0.2s;">Something else here</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-3 text-muted disabled" aria-disabled="true">Disabled</a>
+                </li>
+            </ul>
+
+            <!-- Search Form -->
+            <form class="d-flex gap-2 mt-3 mt-lg-0" role="search">
+                <input class="form-control text-light shadow-none" type="search" placeholder="Search..." aria-label="Search" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; font-size: 0.9rem;" />
+                <button class="btn px-3" type="submit" style="background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%); color: #fff; border-radius: 10px; font-weight: 600; font-size: 0.9rem; white-space: nowrap;">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<style>
+    /* Custom Dropdown Hover Effects */
+    .dropdown-menu .dropdown-item:hover {
+        background-color: rgba(99, 102, 241, 0.2) !important;
+        color: #818cf8 !important;
+    }
+    .navbar-nav .nav-link:hover {
+        color: #f8fafc !important;
+    }
+</style>
